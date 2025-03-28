@@ -698,7 +698,7 @@ class GrocyChoresCard extends LitElement {
         this.local_cached_hidden_items.push(`chore${choreId}`);
         this.requestUpdate();
         this._hass.callService("grocy", "execute_chore", {
-            chore_id: choreId, done_by: this._getUserId()
+            chore_id: choreId, done_by: this._getUserId(), track_execution_now: this.track_execution_now
         });
         this._showTrackedToast(choreName);
     }
@@ -938,6 +938,7 @@ class GrocyChoresCard extends LitElement {
         if(this.show_description) {
             this.description_max_length = this.config.description_max_length ?? null;
         }
+        this.track_execution_now = this.config.track_execution_now ?? true;
     }
 
 
@@ -965,7 +966,7 @@ window.customCards.push({
     type: 'grocy-chores-card',
     name: 'Grocy Chores and Tasks Card',
     preview: false,
-    description: 'A card used to display chores and/or tasks from the Grocy custom component.',
+    description: 'A card used to display chores and/or tasks from the Grocy custom component. (Modified)',
     documentationURL: 'https://github.com/isabellaalstrom/lovelace-grocy-chores-card'
 });
 
